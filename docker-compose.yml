@@ -1,0 +1,214 @@
+version: "2.2"
+
+networks:
+  splunknet:
+    driver: bridge
+#    attachable: true
+
+services:
+  depserver1:
+    networks:
+      splunknet:
+        aliases:
+          - depserver1
+    image: splunk/splunk:latest
+    hostname: depserver1
+    container_name: depserver1
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_ROLE=splunk_deployment_server
+      - SPLUNK_APPS_URL=http://10.10.35.88:9000/ufconfig.tgz
+      - SPLUNK_PASSWORD
+
+  uf1:
+    networks:
+      splunknet:
+        aliases:
+          - uf1
+    image: splunk/universalforwarder:latest
+    hostname: uf_88_1
+    container_name: uf_88_1
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_INDEXER_URL=morgansplunk.atlpss.hp.net:9997
+      - SPLUNK_DEPLOYMENT_SERVER=depserver1
+      - SPLUNK_ADD=udp 1514,monitor /var/log/*
+      - SPLUNK_PASSWORD
+    ports:
+      - 8089
+    volumes:
+      - /tmp/generated_data/1:/var/log
+    cpu_count: 6
+    cpu_percent: 100
+    mem_reservation: 32G
+    mem_limit: 32G
+
+
+  uf2:
+    networks:
+      splunknet:
+        aliases:
+          - uf2
+    image: splunk/universalforwarder:latest
+    hostname: uf_88_2
+    container_name: uf_88_2
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_INDEXER_URL=morgansplunk.atlpss.hp.net:9997
+      - SPLUNK_DEPLOYMENT_SERVER=depserver1
+      - SPLUNK_ADD=udp 1514,monitor /var/log/*
+      - SPLUNK_PASSWORD
+    ports:
+      - 8089
+    volumes:
+      - /tmp/generated_data/2:/var/log
+    cpu_count: 6
+    cpu_percent: 100
+    mem_reservation: 32G
+    mem_limit: 32G
+
+
+  uf3:
+    networks:
+      splunknet:
+        aliases:
+          - uf3
+    image: splunk/universalforwarder:latest
+    hostname: uf_88_3
+    container_name: uf_88_3
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_INDEXER_URL=morgansplunk.atlpss.hp.net:9997
+      - SPLUNK_DEPLOYMENT_SERVER=depserver1
+      - SPLUNK_ADD=udp 1514,monitor /var/log/*
+      - SPLUNK_PASSWORD
+    ports:
+      - 8089
+    volumes:
+      - /tmp/generated_data/3:/var/log
+    cpu_count: 6
+    cpu_percent: 100
+    mem_reservation: 32G
+    mem_limit: 32G
+
+
+  uf4:
+    networks:
+      splunknet:
+        aliases:
+          - uf4
+    image: splunk/universalforwarder:latest
+    hostname: uf_88_4
+    container_name: uf_88_4
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_INDEXER_URL=morgansplunk.atlpss.hp.net:9997
+      - SPLUNK_DEPLOYMENT_SERVER=depserver1
+      - SPLUNK_ADD=udp 1514,monitor /var/log/*
+      - SPLUNK_PASSWORD
+    ports:
+      - 8089
+    volumes:
+      - /tmp/generated_data/4:/var/log
+    cpu_count: 6
+    cpu_percent: 100
+    mem_reservation: 32G
+    mem_limit: 32G
+
+
+  uf5:
+    networks:
+      splunknet:
+        aliases:
+          - uf5
+    image: splunk/universalforwarder:latest
+    hostname: uf_88_5
+    container_name: uf_88_5
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_INDEXER_URL=morgansplunk.atlpss.hp.net:9997
+      - SPLUNK_DEPLOYMENT_SERVER=depserver1
+      - SPLUNK_ADD=udp 1514,monitor /var/log/*
+      - SPLUNK_PASSWORD
+    ports:
+      - 8089
+    volumes:
+      - /tmp/generated_data/5:/var/log
+    cpu_count: 6
+    cpu_percent: 100
+    mem_reservation: 32G
+    mem_limit: 32G
+
+
+  uf6:
+    networks:
+      splunknet:
+        aliases:
+          - uf6
+    image: splunk/universalforwarder:latest
+    hostname: uf_88_6
+    container_name: uf_88_6
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_INDEXER_URL=morgansplunk.atlpss.hp.net:9997
+      - SPLUNK_DEPLOYMENT_SERVER=depserver1
+      - SPLUNK_ADD=udp 1514,monitor /var/log/*
+      - SPLUNK_PASSWORD
+    ports:
+      - 8089
+    volumes:
+      - /tmp/generated_data/6:/var/log
+    cpu_count: 6
+    cpu_percent: 100
+    mem_reservation: 32G
+    mem_limit: 32G
+
+
+  uf7:
+    networks:
+      splunknet:
+        aliases:
+          - uf7
+    image: splunk/universalforwarder:latest
+    hostname: uf_88_7
+    container_name: uf_88_7
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_INDEXER_URL=morgansplunk.atlpss.hp.net:9997
+      - SPLUNK_DEPLOYMENT_SERVER=depserver1
+      - SPLUNK_ADD=udp 1514,monitor /var/log/*
+      - SPLUNK_PASSWORD
+    ports:
+      - 8089
+    volumes:
+      - /tmp/generated_data/7:/var/log
+    cpu_count: 6
+    cpu_percent: 100
+    mem_reservation: 32G
+    mem_limit: 32G
+
+
+  uf8:
+    networks:
+      splunknet:
+        aliases:
+          - uf8
+    image: splunk/universalforwarder:latest
+    hostname: uf_88_8
+    container_name: uf_88_8
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_INDEXER_URL=morgansplunk.atlpss.hp.net:9997
+      - SPLUNK_DEPLOYMENT_SERVER=depserver1
+      - SPLUNK_ADD=udp 1514,monitor /var/log/*
+      - SPLUNK_PASSWORD
+    ports:
+      - 8089
+    volumes:
+      - /tmp/generated_data/8:/var/log
+    cpu_count: 6
+    cpu_percent: 100
+    mem_reservation: 32G
+    mem_limit: 32G
+
+
