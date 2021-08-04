@@ -3,6 +3,7 @@ A Scalable approach to load generation using docker compose, containerized Splun
 
 For the deployment server to distribute the app, it needs to be hosted somewhere. For this, I just spun up a Python-based webserver on one of the nodes.
 ```
+# SPLUNK_APPS_URL=http://<IP-ADDRESS>:9000/ufconfig.tgz
 tar -cvzf ufconfig.tgz ufconfig
 nohup python3 -m http.server 9000 > /dev/null 2>&1 &
 ```
